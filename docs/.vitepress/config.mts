@@ -1,5 +1,7 @@
 import { defineConfig } from 'vitepress'
 
+const pkg = require('../../package.json')
+
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: "sticknodes.js",
@@ -8,7 +10,20 @@ export default defineConfig({
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'API Reference', link: '/reference/stickfigure' }
+      { text: 'API Reference', link: '/reference/stickfigure' },
+      {
+        text: pkg.version,
+        items: [
+          {
+            text: 'Changelog',
+            link: 'https://github.com/vincetheprogrammer/sticknodes.js'
+          },
+          {
+            text: 'Contributing',
+            link: 'https://github.com/vincetheprogrammer/sticknodes.js'
+          }
+        ]
+      }
     ],
 
     sidebar: {
