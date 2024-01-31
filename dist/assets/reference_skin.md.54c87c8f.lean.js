@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as r}from"./chunks/framework.ec8f7e8e.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"reference/skin.md","filePath":"reference/skin.md"}'),n={name:"reference/skin.md"};function a(s,c,o,i,f,p){return t(),r("div")}const m=e(n,[["render",a]]);export{d as __pageData,m as default};
