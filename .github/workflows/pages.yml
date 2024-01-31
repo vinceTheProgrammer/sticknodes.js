@@ -28,7 +28,7 @@ jobs:
 
     - name: Deploy to GitHub Pages
       run: |
-        mv ./.vitepress/dist ./docs/
+        mv ./docs/.vitepress/dist ./docs/
       if: success()
     
     - name: Deploy to GitHub Pages
