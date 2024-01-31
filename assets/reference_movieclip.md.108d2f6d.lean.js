@@ -1,1 +1,0 @@
-import{_ as e,o as t,c as r}from"./chunks/framework.ec8f7e8e.js";const l=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"reference/movieclip.md","filePath":"reference/movieclip.md"}'),c={name:"reference/movieclip.md"};function o(a,i,n,s,p,m){return t(),r("div")}const _=e(c,[["render",o]]);export{l as __pageData,_ as default};
