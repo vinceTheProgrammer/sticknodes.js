@@ -175,7 +175,7 @@ The .stknds format is compressed when saved and decompressed when loaded to redu
 |----------|---------|--------|------|-----------|
 |1-4|32-bit signed int big-endian|>=300|Any|<span style="color:coral">T</span> = Length of movieclip name
 |6-(<span style="color:coral">T</span> + 5)|sequence with size of <span style="color:coral">T</span> of text bytes|>=300|Any|Movieclip name
-|(<span style="color:coral">T</span> + 6)-((<span style="color:coral">T</span> + 5) + ?)|sequence with size of <span style="color:coral">T</span> of [movieclip library data](/reference/spec/sktnds#movieclip-library-data)|>=300|Any|See [movieclip library data](/reference/spec/sktnds#movieclip-library-data) for more information.
+|(<span style="color:coral">T</span> + 6)-((<span style="color:coral">T</span> + 5) + ?)|sequence with size of <span style="color:coral">T</span> of [movieclip library data](/reference/spec/stknds#movieclip-library-data)|>=300|Any|See [movieclip library data](/reference/spec/stknds#movieclip-library-data) for more information.
 |?-?|32-bit signed int big-endian|>=300|Any|Movieclip UID
 
 #### Movieclip Library Data
@@ -305,7 +305,7 @@ The .stknds format is compressed when saved and decompressed when loaded to redu
 |Byte Range|Data Type|Versions|Builds|Description|
 |----------|---------|--------|------|-----------|
 |1-4|32-bit signed int big-endian|>=237|Any|<span style="color:coral">???</span> =  Number of auto-cams
-|5-(?<span style="color:coral">???</span> + 4)|sequence with size of <span style="color:coral">???</span> of [auto camera data](/reference/spec/auto-camera-data)|>=237|Any|See [auto camera data](/reference/spec/auto-camera-data) for more information.
+|5-(?<span style="color:coral">???</span> + 4)|sequence with size of <span style="color:coral">???</span> of [auto camera data](/reference/spec/stknds#auto-camera-data)|>=237|Any|See [auto camera data](/reference/spec/stknds#auto-camera-data) for more information.
 
 ### Auto Camera Data
 |Byte Range|Data Type|Versions|Builds|Description|

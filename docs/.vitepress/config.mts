@@ -6,6 +6,7 @@ const pkg = require('../../package.json')
 export default defineConfig({
   title: "sticknodes.js",
   description: "Asset manipulation library for Stick Nodes",
+  base: '/sticknodes.js/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
