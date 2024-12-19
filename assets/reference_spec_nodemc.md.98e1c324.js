@@ -1,0 +1,1 @@
+import{_ as e,o as c,c as t}from"./chunks/framework.42999896.js";const _=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"reference/spec/nodemc.md","filePath":"reference/spec/nodemc.md"}'),r={name:"reference/spec/nodemc.md"};function n(o,a,s,d,p,m){return c(),t("div")}const i=e(r,[["render",n]]);export{_ as __pageData,i as default};
