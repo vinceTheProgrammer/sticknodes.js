@@ -1,0 +1,49 @@
+name: Deploy VitePress
+
+on:
+  push:
+    branches:
+      - release
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Setup pnpm
+      - name: Setup pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: 7
+
+      # Setup Node.js
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+          cache: 'pnpm'
+
+      # Install dependencies
+      - name: Install dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      # Build the VitePress site
+      - name: Build VitePress
+        run: pnpm run docs:build
+
+      # Deploy the build to the pages branch
+      - name: Deploy to pages branch
+        run: |
+          git config --global user.name "github-actions[bot]"
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git clone --branch=pages --depth=1 https://github.com/${{ github.repository }} pages
+          rm -rf pages/*
+          cp -r docs/.vitepress/dist/* pages/
+          cd pages
+          git add .
+          git commit -m "Deploy VitePress site from release branch"
+          git push origin pages
