@@ -37,13 +37,16 @@ jobs:
 
       # Deploy the build to the pages branch
       - name: Deploy to pages branch
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
           git config --global user.name "github-actions[bot]"
           git config --global user.email "github-actions[bot]@users.noreply.github.com"
-          git clone --branch=pages --depth=1 https://github.com/${{ github.repository }} pages
+          git clone --branch=pages https://x-access-token:${GITHUB_TOKEN}@github.com/${{ github.repository }} pages
           rm -rf pages/*
           cp -r docs/.vitepress/dist/* pages/
           cd pages
           git add .
           git commit -m "Deploy VitePress site from release branch"
           git push origin pages
+
