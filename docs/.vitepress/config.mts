@@ -34,6 +34,15 @@ export default defineConfig({
           items: [
             { text: 'Getting Started', link: '/guide/getting-started' }
           ]
+        },
+        {
+          text: 'Stickfigures',
+          items: [
+            { text: 'Import', link: '/guide/import' },
+            { text: 'Create', link: '/guide/create' },
+            { text: 'Manipulate', link: '/guide/manipulate' },
+            { text: 'Export', link: '/guide/export' }
+          ]
         }
       ],
 
