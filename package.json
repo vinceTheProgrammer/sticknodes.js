@@ -1,6 +1,6 @@
 {
   "name": "sticknodes.js",
-  "version": "1.0.0-alpha.1+4.1.0",
+  "version": "1.0.0-alpha.1+4.2.3",
   "description": "Asset manipulation library for Stick Nodes",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
@@ -16,8 +16,7 @@
     "sticknodes",
     "nodes",
     "stknds",
-    "nodemc",
-    "snskin"
+    "nodemc"
   ],
   "author": "vinceTheProgrammer",
   "license": "MIT",

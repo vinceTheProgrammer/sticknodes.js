@@ -12,7 +12,7 @@ hero:
       link: /guide/getting-started
     - theme: alt
       text: Reference
-      link: /reference/nodes
+      link: /reference/spec/nodes
 
 features:
   - title: Parse
@@ -22,6 +22,6 @@ features:
   - title: Write
     details: Write valid Stick Nodes asset files from JS objects
   - title: All Asset Types
-    details: Supports .nodes, .stknds, .nodemc, and .snskin files
+    details: Supports .nodes, .stknds, and .nodemc files
 ---
 

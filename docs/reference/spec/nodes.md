@@ -3,6 +3,7 @@ outline: deep
 ---
 
 # .nodes File Format Specification
+This specification is valid for SN versions <= 423.
 
 ## File Structure
 
@@ -10,84 +11,130 @@ outline: deep
 |-------------|
 |[Header](/reference/spec/nodes#Header)|
 |[Node Data](/reference/spec/nodes#node-data)||
-|[Polyfill Header](/reference/spec/nodes#polyfill-header)|
+|[Polyfill Header](/reference/spec/nodes#polyfills-header)|
 |[Polyfill Data](/reference/spec/nodes#polyfill-data)||
+|[Connector Header](/reference/spec/nodes#connectors-header)||
+|[Connection Data](/reference/spec/nodes#connector-data)||
 |End of file||
 
 ## Header
-The header consists of up to 16 bytes depending on the SN version. They are as follows:
+Defines the basic metadata of the stickfigure.
 
-|Byte Range|Data Type|Versions|Description|
-|----------|---------|--------|-----------|
-|1-4|32-bit signed int big-endian|Any|Stick Nodes version number. Must be between 0 and the latest version (inclusive).
-|5-8|32-bit signed int big-endian|>=403|Build number
-|9-12|32-bit float big-endian|Any|Stickfigure scale
-|13-16|32-bit signed int big-endian|Any|Stickfigure color. See the [color reference](/reference/spec/nodes#color) for more information.
-|17-∞|sequence of [Node Data](/reference/spec/nodes#node-data)|Any|See [Node Data](/reference/spec/nodes#node-data) for more information.
+|Data Type|Versions|Description|
+|---------|--------|-----------|
+|32-bit signed int big-endian|Any|Stick Nodes version number. Must be between 0 and the latest version (inclusive).
+|32-bit signed int big-endian|>=403|Build number
+|32-bit float big-endian|Any|Stickfigure scale
+|32-bit signed int big-endian|Any|Stickfigure color. See the [color reference](/reference/spec/nodes#color) for more information.
+|sequence of [Node Data](/reference/spec/nodes#node-data)|Any|See [Node Data](/reference/spec/nodes#node-data) for more information.
 
 ## Node Data
-Each node consists of up to 90 bytes depending on the SN version and build number. They are as follows:
+Defines the properties of a node.
 
-|Byte Range|Data Type|Versions|Builds|Description|
-|----------|---------|--------|------|-----------|
-|1|8-bit signed byte|Any|Any|Node type. See the [node types table](/reference/spec/nodes#node-types) for more information.
-|2-5|32-bit signed int big-endian|Any|Any|Draw order index. 0 for main node. lesser = behind, greater = in front. Acts as ID for node. Every node must have a unique draw order index.
-|6|8-bit unsigned byte|Any|Any|Is static boolean
-|7|8-bit unsigned byte|Any|Any|Is Stretchy boolean
-|8|8-bit unsigned byte|>=248|Any|Is smart stretch boolean
-|9|8-bit unsigned byte|>=252|Any|Do not apply smart stretch boolean
-|10|8-bit unsigned byte|Any|Any|Use segment color boolean
-|11|8-bit unsigned byte|>=256|Any|Use circle outline boolean
-|12|8-bit unsigned byte|>=403|>=21|Circle is hollow boolean
-|13|8-bit unsigned byte|>=176|Any|Use gradient boolean
-|14|8-bit unsigned byte|>=176|Any|Reverse gradient boolean
-|15-16|16-bit signed int (short big-endian)|>=403|>=20|Gradient mode
-|17|8-bit unsigned byte|Any|Any|Use segment scale boolean
-|18-21|32-bit float big-endian|Any|Any|Local X. The X offset from the parent node. Positive in rightward direction, negative in the leftward 
-|22-25|32-bit float big-endian|Any|Any|Local Y. The Y offset from the parent node. Positive in upward direction, negative in the downward direction
-|26-29|32-bit float big-endian|Any|Any|Scale
-|30-33|32-bit float big-endian|Any|Any|Default length
-|34-37|32-bit float big-endian|Any|Any|Length
-|38-41|32-bit signed int big-endian|Any|Any|Default thickness
-|42-45|32-bit signed int big-endian|Any|Any|Thickness
-|46-49|32-bit signed int big-endian|>=320|Any|Segment curve radius & default curve radius
-|50|8-bit unsigned byte|>=403|>=20|Curve "circulization" (circularization) boolean
-|51-52|16-bit signed int (short) big-endian|>=403|>=21|Segment curve polyfill precision
-|53|8-bit unsigned byte|>=256|Any|Half-arc boolean
-|54-55|16-bit signed int (short) big-endian|>=256|Any|Right triangle direction
-|56|8-bit unsigned byte|>=300|Any|Triangle upside-down boolean
-|57-60|32-bit float big-endian|>=256|Any|Trapezoid top thickness ratio
-|61-62|16-bit signed int (short) big-endian|>=256|Any|Number of polygon vertices
-|63-66|32-bit float big-endian|>=248|Any|Default local angle
-|67-70|32-bit float big-endian|Any|Any|Local angle
-|71-74|32-bit float big-endian|>=248|Any|Default angle
-|75-78|32-bit signed int big-endian|Any|Any|Color. See the [color reference](/reference/spec/nodes#color) for more information.
-|79-82|32-bit signed int big-endian|>=176|Any|Gradient color. See the [color reference](/reference/spec/nodes#color) for more information.
-|83-86|32-bit signed int big-endian|>=256|Any|Circle outline color. See the [color reference](/reference/spec/nodes#color) for more information.
-|87-90|32-bit signed int big-endian|Any|Any|<span style="color:coral">A</span> = Number of child nodes
-|91-(~90<span style="color:coral">A</span>+90)|sequence with size of <span style="color:coral">A</span> of [Node Data](/reference/spec/nodes#node-data)|Any|Any|See [Node Data](/reference/spec/nodes#node-data) for more information.
+|Data Type|Versions|Builds|Description|
+|---------|--------|------|-----------|
+|8-bit signed byte|Any|Any|Node type. See the [node types table](/reference/spec/nodes#node-types) for more information.
+|32-bit signed int big-endian|Any|Any|Draw order index. 0 for main node. lesser = behind, greater = in front. Acts as ID for node. Every node must have a unique draw order index.
+|8-bit unsigned byte|Any|Any|Is static boolean
+|8-bit unsigned byte|Any|Any|Is stretchy boolean
+|8-bit unsigned byte|>=403|>=48|Is floaty boolean
+|8-bit unsigned byte|>=248|Any|Is smart stretch boolean
+|8-bit unsigned byte|>=252|Any|Do not apply smart stretch boolean
+|8-bit unsigned byte|>=403|>=50|Smart stretch, reset impulse boolean
+|8-bit unsigned byte|Any|Any|Use segment color boolean
+|8-bit unsigned byte|>=256|Any|Use circle outline boolean
+|8-bit unsigned byte|>=403|>=21|Circle is hollow boolean
+|8-bit unsigned byte|>=176|Any|Use gradient boolean
+|8-bit unsigned byte|>=176|Any|Reverse gradient boolean
+|16-bit signed int (short big-endian)|>=403|>=20|Gradient mode
+|8-bit unsigned byte|Any|Any|Use segment scale boolean
+|32-bit float big-endian|Any|Any|Local X. The X offset from the parent node. Positive in rightward direction, negative in the leftward 
+|32-bit float big-endian|Any|Any|Local Y. The Y offset from the parent node. Positive in upward direction, negative in the downward direction
+|32-bit float big-endian|Any|Any|Scale
+|32-bit float big-endian|Any|Any|Default length
+|32-bit float big-endian|Any|Any|Length
+|32-bit signed int big-endian|Any|Any|Default thickness
+|32-bit signed int big-endian|Any|Any|Thickness
+|32-bit signed int big-endian|>=320|Any|Segment curve radius & default curve radius
+|8-bit unsigned byte|>=403|>=20|Curve "circulization" (circularization) boolean
+|16-bit signed int (short) big-endian|>=403|>=21|Segment curve polyfill precision
+|8-bit unsigned byte|>=256|Any|Half-arc boolean
+|16-bit signed int (short) big-endian|>=256|Any|Right triangle direction
+|8-bit unsigned byte|>=300|Any|Triangle upside-down boolean
+|<span style="color:cornflowerblue">if <span style="color:coral">build</span> < 64: </span><br>32-bit signed int big-endian<br> <span style="color:cornflowerblue">else:</span><br>32-bit float big-endian|>=403|>=36|Trapezoid thickness 1
+|<span style="color:cornflowerblue">if <span style="color:coral">build</span> < 64: </span><br>32-bit signed int big-endian<br> <span style="color:cornflowerblue">else:</span><br>32-bit float big-endian|>=403|>=36|Trapezoid thickness 2
+|32-bit signed int big-endian|>=403|==36|[unused]
+|32-bit signed int big-endian|>=403|==36|[unused]
+|8-bit unsigned byte|>=403|==36|Use trapezoid thickness 1 boolean (I think?)
+|8-bit unsigned byte|>=403|==36|Use trapezoid thickness 2 boolean (I think?)
+|32-bit float big-endian|>=256|!=36|Trapezoid top thickness ratio
+|8-bit unsigned byte|>=403|>=36|Trapezoid is rounded 1 boolean
+|8-bit unsigned byte|>=403|>=36|Trapezoid is rounded 2 boolean
+|16-bit signed int (short) big-endian|>=256|Any|Number of polygon vertices
+|32-bit float big-endian|>=248|Any|Default local angle
+|32-bit float big-endian|Any|Any|Local angle
+|32-bit float big-endian|>=248|Any|Default angle
+|32-bit signed int big-endian|Any|Any|Color. See the [color reference](/reference/spec/nodes#color) for more information.
+|32-bit signed int big-endian|>=176|Any|Gradient color. See the [color reference](/reference/spec/nodes#color) for more information.
+|32-bit signed int big-endian|>=256|Any|Circle outline color. See the [color reference](/reference/spec/nodes#color) for more information.
+|8-bit unsigned byte|>=403|>=39|Is angle locked boolean. If build <= 50, forced to false.
+|32-bit float big-endian|>=403|>=39 && <=50|[unused]
+|8-bit unsigned byte|>=403|>=51|Angle lock is main node boolean. If build < 56, 0 means true.
+|32-bit float big-endian|>=403|>=51 && <=56|The number being subtracted from to calculate the angle lock offset. (in 10 - 5, it would be 10).
+|32-bit float big-endian|>=403|>=51 && <=56|The number being subtracted to calculate the angle lock offset. (in 10 - 5, it would be 5).
+|32-bit float big-endian|>=403|>=57|Angle lock offset
+|32-bit float big-endian|>=403|>=63|Angle lock relative start
+|32-bit float big-endian|>=403|>=67|Angle lock stickfigure start
+|8-bit signed byte|>=403|>=63|Angle lock relative multiplier
+|<span style="color:cornflowerblue">if <span style="color:coral">build</span> <= 40: </span><br>16-bit signed int (short) big-endian<br> <span style="color:cornflowerblue">else:</span><br>8-bit unsigned byte|>=403|>=39|Is drag locked boolean
+|16-bit signed int (short) big-endian|>=403|>=41 && <=45|[unused]
+|32-bit float big-endian|>=403|>=46|Drag lock angle
+|32-bit float big-endian|>=403|>=41|Smart stretch multiplier
+|8-bit unsigned byte|>=403|>=41 && <=45|[unused]
+|32-bit signed int big-endian|Any|Any|<span style="color:coral">A</span> = Number of child nodes
+|sequence with size of <span style="color:coral">A</span> of 32-bit signed int big-endian|>=403|>38|Sequence of ints representing booleans for whether each corresponding node is a connector
+|sequence with size of <span style="color:coral">A</span> of [Node Data](/reference/spec/nodes#node-data)|Any|Any|See [Node Data](/reference/spec/nodes#node-data) for more information.
 
 ## Polyfills
 Requires version 2.3.0 or later.
 
-### Polyfill Header
-The polyfills header consists of 4 bytes. They are as follows:
+### Polyfills Header
+Defines how many polyfills are present in the stickfigure.
 
-|Byte Range|Data Type|Versions|Description|
-|----------|---------|--------|-----------|
-|1-4|32-bit signed int big-endian|>=230|<span style="color:coral">B</span> = Number of polyfills
-|5-(13<span style="color:coral">B</span>+4)|sequence with size of <span style="color:coral">B</span> of [Polyfill Data](/reference/spec/nodes#polyfill-data)|See [Polyfill Data](/reference/spec/nodes#polyfill-data) for more information.
+|Data Type|Versions|Builds|Description|
+|---------|--------|------|-----------|
+|32-bit signed int big-endian|>=230|Any|<span style="color:coral">B</span> = Number of polyfills
+|sequence with size of <span style="color:coral">B</span> of [Polyfill Data](/reference/spec/nodes#polyfill-data)|>=230|Any|See [Polyfill Data](/reference/spec/nodes#polyfill-data) for more information.
 
 ### Polyfill Data
-Each polyfill consists of 13 bytes. They are as follows:
+Defines the properties of a polyfill.
 
-|Byte Range|Data Type|Versions|Description|
-|----------|---------|--------|-----------|
-|1-4|32-bit signed int big-endian|>=230|Draw order index of parent node (becomes the anchor node)
-|5-8|32-bit signed int big-endian|>=230|Color. See the [color reference](/reference/spec/nodes#color) for more information.
-|9|8-bit unsigned byte|>=230|Use polyfill color boolean
-|10-13|32-bit signed int big-endian|>=230|<span style="color:coral">C</span> = Number of polyfill nodes (not counting the anchor node)
-|14-(4<span style="color:coral">C</span>+13)|sequence with size of <span style="color:coral">C</span> of 32-bit signed int big-endian|>=230|The draw order index of each node that the polyfill is attached to, in order.
+|Data Type|Versions|Builds|Description|
+|---------|--------|------|-----------|
+|32-bit signed int big-endian|>=230|Any|Draw order index of parent node (becomes the anchor node)
+|32-bit signed int big-endian|>=230|Any|Color. See the [color reference](/reference/spec/nodes#color) for more information.
+|8-bit unsigned byte|>=230|Any|Use polyfill color boolean
+|32-bit signed int big-endian|>=230|Any|<span style="color:coral">C</span> = Number of polyfill nodes (not counting the anchor node)
+|sequence with size of <span style="color:coral">C</span> of 32-bit signed int big-endian|>=230|Any|The draw order index of each node that the polyfill is attached to, in order.
+
+## Connectors
+Requires build 38 or later. Implicitly requires version 4.0.3 or later.
+
+### Connectors Header
+Defines how many connector connections there are.
+
+|Data Type|Versions|Builds|Description|
+|---------|--------|------|-----------|
+|32-bit signed int big-endian|>=403|>=38|<span style="color:coral">D</span> = Number of connector connections
+|sequence with size of <span style="color:coral">D</span> of [Connection Data](/reference/spec/nodes#connection-data)|>=403|>=38|See [Connection Data](/reference/spec/nodes#connection-data) for more information.
+
+### Connection Data
+Defines the properties of a connector connection.
+
+|Data Type|Versions|Builds|Description|
+|---------|--------|------|-----------|
+|32-bit signed int big-endian|>=403|>=38|Draw order index of start node
+|32-bit signed int big-endian|>=403|>=38|Draw order index of end node
 
 ## Additional Information
 
