@@ -105,9 +105,9 @@ For a visual aid to help understand ID conversion maps, see [ID converstion maps
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |8-bit unsigned byte|>=140 && <400|Any|Background image enabled boolean
-|8-bit unsigned byte|>=140 && <170|Any|Some boolean related to bg image scaling?
-|32-bit float big-endian|>=170 && <400|Any|Scale background image x?
-|32-bit float big-endian|>=170 && <400|Any|Scale background image y?
+|8-bit unsigned byte|>=140 && <170|Any|Some boolean related to bg image scaling? Something vaguely related to being strict 1920x1080 when false and scaling to canvas width and height when true?
+|32-bit float big-endian|>=170 && <400|Any|Scale background image x
+|32-bit float big-endian|>=170 && <400|Any|Scale background image y
 |32-bit signed int big-endian|>=140 && <400|Any|Background image width
 |32-bit signed int big-endian|>=140 && <400|Any|Background image height
 |[RGB888](/reference/spec/stknds#rgb888) sequence of 8-bit unsigned bytes|>=140 && <400|Any|Image data
@@ -131,7 +131,7 @@ For a visual aid to help understand ID conversion maps, see [ID converstion maps
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|>=160|Any|<span style="color:coral">L</span> = Number of sounds
-|sequence with size of <span style="color:coral">L</span> of [sound name](/reference/spec/stknds#sound-header)|>=160|Any|See [sound name](/reference/spec/stknds#sound-header) for more information.
+|sequence with size of <span style="color:coral">L</span> of [sound header](/reference/spec/stknds#sound-header)|>=160|Any|See [sound header](/reference/spec/stknds#sound-header) for more information.
 
 #### Sound Header
 |Data Type|Versions|Builds|Description|
@@ -151,28 +151,7 @@ For a visual aid to help understand ID conversion maps, see [ID converstion maps
 |8-bit unsigned byte|>=400|Any|<span style="color:cornflowerblue">if 1: </span><span style="color:coral">O</span> = sprite group source <span style="color:cornflowerblue">else if 0: </span> <span style="color:coral">O</span> = sprite source
 |32-bit signed int big-endian|>=400|Any|<span style="color:coral">P</span> = Length of sprite name
 |sequence with size of <span style="color:coral">P</span> of text bytes|>=400|Any|Sprite name
-|<span style="color:cornflowerblue">if <span style="color:coral">O</span> == sprite group source: </span>sequence with size of <span style="color:coral">P</span> of [sprite group library data](/)<br> <span style="color:cornflowerblue">else if <span style="color:coral">O</span> == sprite source: </span> sequence with size of <span style="color:coral">P</span> of [sprite library data](/)|>=400|Any|See [sprite group library data](/) or [sprite library data](/) for more information.
-
-#### Sprite Group Library Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=400|Any|<span style="color:coral">Q</span> = Number of sprite group state library IDs
-|sequence with size of <span style="color:coral">Q</span> of 32-bit signed int big-endian|>=400|Any|Sprite group state library ID
-
-#### Sprite Library Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|8-bit unsigned byte|>=400|Any|Sprite is transparent boolean
-|8-bit unsigned byte|>=400|Any|Sprite is anti-alias boolean
-|32-bit float big-endian|>=400|Any|Sprite default origin X
-|32-bit float big-endian|>=400|Any|Sprite default origin Y
-|32-bit float big-endian|>=400|Any|Sprite internal scale X
-|32-bit float big-endian|>=400|Any|Sprite internal scale Y
-|8-bit unsigned byte|>=401|>=9|Sprite has raw rgb data boolean
-|32-bit signed int big-endian|>=400|Any|Sprite image width
-|32-bit signed int big-endian|>=400|Any|Sprite image height
-|32-bit signed int big-endian|>=400|Any|<span style="color:coral">R</span> = Number of raw RGBA8888 bytes
-|sequence with size of <span style="color:coral">R</span> of [RGBA8888 bytes](/)|>=400|Any|See [RGBA8888 bytes](/) for more information.
+|<span style="color:cornflowerblue">if <span style="color:coral">O</span> == sprite group source: </span>[sprite group library data](/)<br> <span style="color:cornflowerblue">else if <span style="color:coral">O</span> == sprite source: </span>[sprite library data](/)|>=400|Any|See [sprite group library data](/) or [sprite library data](/) for more information.
 
 ### Movieclip Library
 |Data Type|Versions|Builds|Description|
@@ -185,131 +164,14 @@ For a visual aid to help understand ID conversion maps, see [ID converstion maps
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|>=300|Any|<span style="color:coral">T</span> = Length of movieclip name
 |sequence with size of <span style="color:coral">T</span> of text bytes|>=300|Any|Movieclip name
-|sequence with size of <span style="color:coral">T</span> of [movieclip library data](/reference/spec/stknds#movieclip-library-data)|>=300|Any|See [movieclip library data](/reference/spec/stknds#movieclip-library-data) for more information.
+|[movieclip library data](/reference/spec/stknds#movieclip-library-data)|>=300|Any|See [movieclip library data](/reference/spec/stknds#movieclip-library-data) for more information.
 |32-bit signed int big-endian|>=300|Any|Movieclip UID
-
-#### Movieclip Library Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=300|Any|<span style="color:coral">U</span> = Number of frames
-|32-bit signed int big-endian|>=300|Any|Movieclip FPS
-|32-bit signed int big-endian|>=300|Any|Movieclip number of tweened frames
-|8-bit unsigned byte|>=300|Any|Movieclip tweening enabled boolean
-|8-bit unsigned byte|>=300|Any|Movieclip tween loop protection enabled boolean
-|32-bit signed int big-endian|>=300|Any|Movieclip unique figure ID
-|sequence with size of <span style="color:coral">U</span> of [movieclip frame data](/)|>=300|Any|See [movieclip frame data](/) for more information.
-
-##### Movieclip Frame Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit float big-endian|>=300|Any|Frame sound volume
-|32-bit float big-endian|>=310|Any|Frame sound pan
-|32-bit float big-endian|>=310|Any|Frame sound pitch
-|32-bit float big-endian|>=300|Any|Frame sound library ID
-|32-bit signed int big-endian|>=300|Any|<span style="color:coral">V</span> = 
-|sequence with size of <span style="color:coral">V</span> of [movieclip frame asset data](/)|>=300|Any|See [movieclip frame asset data](/) for more information.
-
-##### Movieclip Frame Asset Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=400|Any|<span style="color:coral">W</span> = asset type. (0 = stickfigure, 3 = sprite group, 2 = sprite)
-|<span style="color:cornflowerblue">if <span style="color:coral">W</span> == 0: </span>[movieclip frame stickfigure](/)<br><span style="color:cornflowerblue">else if <span style="color:coral">W</span> == 3: </span>[movieclip frame sprite group](/)<br><span style="color:cornflowerblue">else if <span style="color:coral">W</span> == 2: </span>[movieclip frame sprite](/)|>=300|Any|See [movieclip frame stickfigure](/), [movieclip frame sprite group](/), or [movieclip frame sprite](/) for more information.
-
-###### Movieclip Frame Stickfigure
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=300|Any|Library stickfigure ID
-
-###### Stickfigure Positional Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|Any|Any|Stickfigure ID
-|32-bit float big-endian|Any|Any|Stickfigure scale
-|32-bit float big-endian|>=220|Any|Stickfigure transparency
-|32-bit float big-endian|>=220|Any|Blur|Stickfigure blur
-|8-bit unsigned byte|>=401|>=16|Is motion blur boolean
-|8-bit unsigned byte|>=401|>=16|Motion blur is one direction boolean
-|32-bit signed int big-endian|>=401|>=16|d,nvsakf
-
-###### Sprite Group Positional Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-###### Sprite Positional Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-###### Movieclip Frame Sprite Group
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=300|Any|Library sprite group ID
-
-
-###### Movieclip Frame Sprite
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=300|Any|Library sprite ID
 
 ## Frames
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|Any|Any|<span style="color:coral">??</span> = Number of frames in project
-|sequence of [frame data](/reference/spec/stknds#frame-data)|Any|Any|See [frame data](/reference/spec/stknds#frame-data) for more information.
-
-### Frame Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-#### Positional Frame Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-#### ???
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-#### Frame Textfield Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-##### Textfield Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-#### Frame Camera Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit float big-endian|>=170|Any|Camera scale
-|32-bit float big-endian|>=170|Any|Camera offset X (gets multiplied by App.assetScaling)
-|32-bit float big-endian|>=170|Any|Camera offset Y (gets multiplied by App.assetScaling)
-|32-bit float big-endian|>=230|Any|Rotation (degrees)
-|8-bit unsigned byte|>=310|Any|Is wobbling XY boolean
-|8-bit unsigned byte|>=310|Any|Is wobbling rotation boolean
-|8-bit unsigned byte|>=310|Any|Is wobble scale enabled boolean
-|32-bit signed int big-endian|>=310|Any|Wobble XY intensity
-|32-bit float big-endian|>=170|Any|Wobble rotation intensity
-|32-bit float big-endian|>=170|Any|Wobble speed
-|8-bit unsigned byte|>=230 && <=kjdknclNJSCLqijfewiOIDJ||:(
-
-
-
-
-
-##### Positional Stickfigure Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-##### Positional Movieclip Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-##### Positional Sprite Group Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-
-##### Positional Sprite Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
+|sequence of [frame data](/reference/spec/stknds#frame-data) of length <span style="color:coral">??</span>|Any|Any|See [frame data](/reference/spec/stknds#frame-data) for more information.
 
 ## Auto Camera
 |Data Type|Versions|Builds|Description|
@@ -317,33 +179,16 @@ For a visual aid to help understand ID conversion maps, see [ID converstion maps
 |32-bit signed int big-endian|>=237|Any|<span style="color:coral">???</span> =  Number of auto-cams
 |sequence with size of <span style="color:coral">???</span> of [auto camera data](/reference/spec/stknds#auto-camera-data)|>=237|Any|See [auto camera data](/reference/spec/stknds#auto-camera-data) for more information.
 
-### Auto Camera Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=237|Any|Frame 1 (auto-cam start frame I think)
-|32-bit signed int big-endian|>=237|Any|Frame 2 (auto-cam end frame I think)
-|8-bit unsigned byte|>=237|Any|Is ease in boolean
-|8-bit unsigned byte|>=237|Any|Is ease out boolean
-|16-bit signed int (short) big-endian|>=256|Any|Interpolation ID
-
 ### Session Save Data
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
-|32-bit signed int big-endian|>251|Any|Frame index
-|32-bit float big-endian|>251|Any|Guideline X (gets multiplied by App.assetScaling)
-|32-bit float big-endian|>251|Any|Guideline Y (gets multiplied by App.assetScaling)
-|32-bit float big-endian|>251|Any|Zoom
-|32-bit float big-endian|>251|Any|Zoom position x (gets multiplied by App.assetScaling)
-|32-bit float big-endian|>251|Any|Zoom position Y (gets multiplied by App.assetScaling)
-|32-bit signed int big-endian|>251|Any|UV quality
-|8-bit unsigned byte|>=300|Any|Only draw main nodes boolean
-|8-bit unsigned byte|>=300|Any|Show figure IDs boolean
-|8-bit unsigned byte|>251|Any|Onion skin is normal boolean
-|8-bit unsigned byte|>251|Any|Is showing outline boolean
-|8-bit unsigned byte|>=300|Any|Is showing outline creative boolean
-|8-bit unsigned byte|>=310|Any|Is showing neighbor nodes boolean
-|8-bit unsigned byte|>=310|Any|Is showing neighbor nodes creative boolean
-|8-bit unsigned byte|>251|Any|Is showing guides boolean
+|[session save data](/)|>=251|Any|See [session save data](/) for more information.
+
+### Movieclip Cache
+|Data Type|Versions|Builds|Description|
+|---------|--------|------|-----------|
+|32-bit signed int big-endian|>=319|Any|<span style="color:coral">???</span> =  Number of cached movieclips
+|sequence with size of <span style="color:coral">???</span> of [cached movieclip data](/)|>=319|Any|See [cached movieclip data](/) for more information.
 
 ## Additional Information
 
