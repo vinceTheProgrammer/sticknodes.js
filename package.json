@@ -1,7 +1,7 @@
 {
-  "name": "sticknodes.js",
-  "version": "1.0.0-alpha.1+4.2.3",
-  "description": "Asset manipulation library for Stick Nodes",
+  "name": "sndocs",
+  "version": "4.2.3",
+  "description": "Asset documentation for Stick Nodes",
   "main": "dist/index.js",
   "module": "dist/index.mjs",
   "types": "dist/index.d.ts",

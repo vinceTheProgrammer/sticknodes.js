@@ -1,15 +1,4 @@
-#### Movieclip Library Data
-|Data Type|Versions|Builds|Description|
-|---------|--------|------|-----------|
-|32-bit signed int big-endian|>=300|Any|<span style="color:coral">U</span> = Number of frames
-|32-bit signed int big-endian|>=300|Any|Movieclip FPS
-|32-bit signed int big-endian|>=300|Any|Movieclip number of tweened frames
-|8-bit unsigned byte|>=300|Any|Movieclip tweening enabled boolean
-|8-bit unsigned byte|>=300|Any|Movieclip tween loop protection enabled boolean
-|32-bit signed int big-endian|>=300|Any|Movieclip unique figure ID
-|sequence with size of <span style="color:coral">U</span> of [movieclip frame data](/)|>=300|Any|See [movieclip frame data](/) for more information.
-
-##### Movieclip Frame Data
+### Movieclip Frame Data
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit float big-endian|>=300|Any|Frame sound volume
@@ -19,18 +8,18 @@
 |32-bit signed int big-endian|>=300|Any|<span style="color:coral">V</span> = 
 |sequence with size of <span style="color:coral">V</span> of [movieclip frame asset data](/)|>=300|Any|See [movieclip frame asset data](/) for more information.
 
-##### Movieclip Frame Asset Data
+### Movieclip Frame Asset Data
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|>=400|Any|<span style="color:coral">W</span> = asset type. (0 = stickfigure, 3 = sprite group, 2 = sprite)
 |<span style="color:cornflowerblue">if <span style="color:coral">W</span> == 0: </span>[movieclip frame stickfigure](/)<br><span style="color:cornflowerblue">else if <span style="color:coral">W</span> == 3: </span>[movieclip frame sprite group](/)<br><span style="color:cornflowerblue">else if <span style="color:coral">W</span> == 2: </span>[movieclip frame sprite](/)|>=300|Any|See [movieclip frame stickfigure](/), [movieclip frame sprite group](/), or [movieclip frame sprite](/) for more information.
 
-###### Movieclip Frame Stickfigure
+### Movieclip Frame Stickfigure
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|>=300|Any|Library stickfigure ID
 
-###### Stickfigure Positional Data
+### Stickfigure Positional Data
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|Any|Any|Stickfigure ID
@@ -41,21 +30,21 @@
 |8-bit unsigned byte|>=401|>=16|Motion blur is one direction boolean
 |32-bit signed int big-endian|>=401|>=16|d,nvsakf
 
-###### Sprite Group Positional Data
+### Sprite Group Positional Data
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 
-###### Sprite Positional Data
+### Sprite Positional Data
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 
-###### Movieclip Frame Sprite Group
+### Movieclip Frame Sprite Group
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|>=300|Any|Library sprite group ID
 
 
-###### Movieclip Frame Sprite
+### Movieclip Frame Sprite
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|>=300|Any|Library sprite ID
