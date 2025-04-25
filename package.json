@@ -1,5 +1,5 @@
 {
-  "name": "sndocs",
+  "name": "sticknodes.js",
   "version": "4.2.3",
   "description": "Asset documentation for Stick Nodes",
   "main": "dist/index.js",
