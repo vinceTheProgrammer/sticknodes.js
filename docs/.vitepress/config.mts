@@ -6,7 +6,7 @@ const pkg = require('../../package.json')
 export default defineConfig({
   title: "SNDocs",
   description: "Asset manipulation library for Stick Nodes",
-  base: '/sndocs/',
+  base: './',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
