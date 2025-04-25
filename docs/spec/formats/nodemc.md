@@ -27,7 +27,7 @@ The .nodemc format is compressed when saved and decompressed when loaded to redu
 |32-bit signed int big-endian|Any|Any|<span style="color:coral">F</span> = Preview frame count
 |32-bit signed int big-endian|Any|Any|<span style="color:coral">W</span> = Preview resolution width
 |32-bit signed int big-endian|Any|Any|<span style="color:coral">H</span> = Preview resolution height
-|sequence with size of (<span style="color:coral">W</span> * <span style="color:coral">H</span> * <span style="color:coral">F</span>) of [RGBA8888](/reference/spec/stknds#rgb888)|Any|Any|Preview image data
+|sequence with size of (<span style="color:coral">W</span> * <span style="color:coral">H</span> * <span style="color:coral">F</span>) of [RGBA8888](/spec/formats/stknds#rgb888)|Any|Any|Preview image data
 |32-bit signed int big-endian|Any|Any|FPS
 |32-bit signed int big-endian|Any|Any|Number of tweened frames
 |8-bit unsigned byte|Any|Any|Tweening enabled boolean
@@ -37,19 +37,19 @@ The .nodemc format is compressed when saved and decompressed when loaded to redu
 ## Stickfigure Library
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
-|sequence of size <span style="color:coral">C</span> of [Stickfigure Header](/reference/spec/stknds#stickfigure-header)|Any|Any|See [Stickfigure Header](/reference/spec/stknds#stickfigure-header) for more information.
+|sequence of size <span style="color:coral">C</span> of [Stickfigure Header](/spec/formats/stknds#stickfigure-header)|Any|Any|See [Stickfigure Header](/spec/formats/stknds#stickfigure-header) for more information.
 
 ## Stickfigure Header
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
 |32-bit signed int big-endian|Any|Any|<span style="color:coral">G</span> = Length of stickfigure name
 |sequence with size of <span style="color:coral">G</span> of text bytes|Any|Any|Stickfigure name
-|[Stickfigure Data](/reference/spec/nodes)|Any|Any|See [Stickfigure Data](/reference/spec/nodes) for more information.
+|[Stickfigure Data](/spec/formats/nodes)|Any|Any|See [Stickfigure Data](/spec/formats/nodes) for more information.
 
 ## Sprite Library
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
-|sequence with size of <span style="color:coral">D</span> of [Sprite Header](/reference/spec/stknds#sprite-header)|>=400|Any|See [Sprite Header](/reference/spec/stknds#sprite-header) for more information
+|sequence with size of <span style="color:coral">D</span> of [Sprite Header](/spec/formats/stknds#sprite-header)|>=400|Any|See [Sprite Header](/spec/formats/stknds#sprite-header) for more information
 
 ## Sprite Header
 |Data Type|Versions|Builds|Description|
@@ -63,7 +63,7 @@ The .nodemc format is compressed when saved and decompressed when loaded to redu
 ## Sound Library
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
-|sequence with size of <span style="color:coral">E</span> of [Sound Header](/reference/spec/stknds#sound-header)|Any|Any|See [Sound Header](/reference/spec/stknds#sound-header) for more information.
+|sequence with size of <span style="color:coral">E</span> of [Sound Header](/spec/formats/stknds#sound-header)|Any|Any|See [Sound Header](/spec/formats/stknds#sound-header) for more information.
 
 ## Sound Header
 |Data Type|Versions|Builds|Description|
@@ -74,4 +74,4 @@ The .nodemc format is compressed when saved and decompressed when loaded to redu
 ## Frames
 |Data Type|Versions|Builds|Description|
 |---------|--------|------|-----------|
-|sequence of [Movieclip Frame](/reference/spec/stknds#frame-data) of length <span style="color:coral">F</span>|Any|Any|See [Movieclip Frame](/reference/spec/stknds#frame-data) for more information.
+|sequence of [Movieclip Frame](/spec/formats/stknds#frame-data) of length <span style="color:coral">F</span>|Any|Any|See [Movieclip Frame](/spec/formats/stknds#frame-data) for more information.
