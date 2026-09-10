@@ -1,7 +1,7 @@
 {
   "name": "sticknodes_spec",
   "version": "4.2.3",
-  "description": "File formsat specification for Stick Nodes",
+  "description": "File format specification for Stick Nodes",
   "scripts": {
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
