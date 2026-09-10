@@ -1,13 +1,8 @@
 {
-  "name": "sticknodes.js",
+  "name": "sticknodes_spec",
   "version": "4.2.3",
-  "description": "Asset documentation for Stick Nodes",
-  "main": "dist/index.js",
-  "module": "dist/index.mjs",
-  "types": "dist/index.d.ts",
+  "description": "File formsat specification for Stick Nodes",
   "scripts": {
-    "build": "tsup src/index.ts --format cjs,esm --dts",
-    "lint": "tsc",
     "docs:dev": "vitepress dev docs",
     "docs:build": "vitepress build docs",
     "docs:preview": "vitepress preview docs"
@@ -21,9 +16,6 @@
   "author": "vinceTheProgrammer",
   "license": "MIT",
   "devDependencies": {
-    "@changesets/cli": "^2.26.2",
-    "tsup": "^7.2.0",
-    "typescript": "^5.2.2",
     "vitepress": "1.0.0-rc.25"
   }
 }

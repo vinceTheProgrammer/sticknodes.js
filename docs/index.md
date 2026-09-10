@@ -3,8 +3,8 @@
 layout: home
 
 hero:
-  name: "SNDocs"
-  text: "Asset Documentation For Stick Nodes"
+  name: "sticknodes_spec"
+  text: "File format specification for Stick Nodes"
   tagline: Unlock the full power of Stick Nodes
   actions:
     - theme: brand
@@ -13,10 +13,10 @@ hero:
 
 features:
   - title: Stickfigures
-    details: .nodes, fully documented
+    details: .nodes, fully documented (up to v4.2.3)
   - title: Projects
-    details: .stknds, fully documented
+    details: .stknds, partially  documented
   - title: Movieclips
-    details: .nodemc, fully documented
+    details: .nodemc, partially documented
 ---
 

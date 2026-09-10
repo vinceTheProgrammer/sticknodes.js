@@ -4,26 +4,14 @@ const pkg = require('../../package.json')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "SNDocs",
-  description: "Asset manipulation library for Stick Nodes",
-  base: '/sticknodes.js/',
+  title: "sticknodes_spec",
+  description: "File format specification for Stick Nodes",
+  base: '/sticknodes_spec/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
       { text: 'SN Spec', link: '/spec/formats/nodes' },
-      {
-        text: pkg.version,
-        items: [
-          {
-            text: 'Changelog',
-            link: 'https://github.com/vincetheprogrammer/sticknodes.js'
-          },
-          {
-            text: 'Contributing',
-            link: 'https://github.com/vincetheprogrammer/sticknodes.js'
-          }
-        ]
-      }
+      { text: pkg.version },
     ],
 
     sidebar: {
@@ -67,7 +55,7 @@ export default defineConfig({
     },
 
     socialLinks: [
-      { icon: 'github', link: 'https://github.com/vinceTheProgrammer/sticknodes.js' }
+      { icon: 'github', link: 'https://github.com/vinceTheProgrammer/sticknodes_spec' }
     ],
   }
 })
