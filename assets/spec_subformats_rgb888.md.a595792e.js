@@ -1,0 +1,1 @@
+import{_ as e,o as t,c as r}from"./chunks/framework.e5e2ee33.js";const d=JSON.parse('{"title":"","description":"","frontmatter":{},"headers":[],"relativePath":"spec/subformats/rgb888.md","filePath":"spec/subformats/rgb888.md"}'),s={name:"spec/subformats/rgb888.md"};function a(o,c,n,p,m,f){return t(),r("div")}const i=e(s,[["render",a]]);export{d as __pageData,i as default};
