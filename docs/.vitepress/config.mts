@@ -4,14 +4,13 @@ const pkg = require('../../package.json')
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
-  title: "sticknodes.js",
+  title: "SNDocs",
   description: "Asset manipulation library for Stick Nodes",
   base: '/sticknodes.js/',
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     nav: [
-      { text: 'Guide', link: '/guide/getting-started' },
-      { text: 'API Reference', link: '/reference/spec/nodes' },
+      { text: 'SN Spec', link: '/spec/formats/nodes' },
       {
         text: pkg.version,
         items: [
@@ -28,31 +27,40 @@ export default defineConfig({
     ],
 
     sidebar: {
-      '/guide/': [
-        {
-          text: 'Introduction',
-          items: [
-            { text: 'Getting Started', link: '/guide/getting-started' }
-          ]
-        },
-        {
-          text: 'Stickfigures',
-          items: [
-            { text: 'Import', link: '/guide/import' },
-            { text: 'Create', link: '/guide/create' },
-            { text: 'Manipulate', link: '/guide/manipulate' },
-            { text: 'Export', link: '/guide/export' }
-          ]
-        }
-      ],
-
-      '/reference/': [
+      '/spec/': [
         {
           text: 'File Format Specifications',
           items: [
-            { text: 'nodes', link: '/reference/spec/nodes' },
-            { text: 'stknds', link: '/reference/spec/stknds' },
-            { text: 'nodemc', link: '/reference/spec/nodemc' }
+            { text: 'nodes', link: '/spec/formats/nodes' },
+            { text: 'stknds', link: '/spec/formats/stknds' },
+            { text: 'nodemc', link: '/spec/formats/nodemc' }
+          ]
+        },
+        {
+          text: 'Sub-format Specifications',
+          items: [
+            { text: 'Auto Camera', link: '/spec/subformats/auto_camera' },
+            { text: 'Cached Movieclip', link: '/spec/subformats/cached_movieclip' },
+            { text: 'Color', link: '/spec/subformats/color' },
+            { text: 'Connection', link: '/spec/subformats/connection' },
+            { text: 'Frame', link: '/spec/subformats/frame' },
+            { text: 'ID Conversion Maps', link: '/spec/subformats/id_conversion_maps' },
+            { text: 'Movieclip Frame', link: '/spec/subformats/movieclip_frame' },
+            { text: 'Movieclip Library Data', link: '/spec/subformats/movieclip_library_data' },
+            { text: 'Node', link: '/spec/subformats/node' },
+            { text: 'Polyfill', link: '/spec/subformats/polyfill' },
+            { text: 'RGB888', link: '/spec/subformats/rgb888' },
+            { text: 'RGBA8888', link: '/spec/subformats/rgba8888' },
+            { text: 'Session Save Data', link: '/spec/subformats/session_save_data' },
+            { text: 'Sprite Group Source', link: '/spec/subformats/sprite_group_source' },
+            { text: 'Sprite Source', link: '/spec/subformats/sprite_source' },
+          ]
+        },
+        {
+          text: 'Additional Information',
+          items: [
+            { text: 'Font Booleans', link: '/spec/additional_information/font_booleans' },
+            { text: 'Node Types', link: '/spec/additional_information/node_types' },
           ]
         }
       ],
